@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/sshpass/Makefile
+Package: sshpass
+Version: 1.06
+Depends: +libc +libstdcpp
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: ssh access without login prompt.
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: sshpass-1.06.tar.gz
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:   SSHPass is a tiny utility, which allows you to provide the ssh password without using the prompt.
+https://sourceforge.net/projects/sshpass
+Albert David <albert dot david at gmail.com>
+@@
+

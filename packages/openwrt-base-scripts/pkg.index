@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/openwrt-base-scripts/Makefile
+Package: openwrt-base-scripts
+Version: v1.1
+Depends: +libc
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: openwrt-base-scripts set of common scripts for openwrt
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: openwrt-base-scripts-v1.1.tar.gz
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:  openwrt-base-scripts provides basic set of scripts for openwrt linux system.
+https://github.com/hackboxguy/openwrt-base-scripts
+Albert David <albert dot david at gmail.com>
+@@
+

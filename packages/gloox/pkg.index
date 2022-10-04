@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/libs/gloox/Makefile
+Package: gloox
+Version: 1.0.24
+Depends: +libc +libstdcpp +zlib +libopenssl
+Conflicts:
+Menu-Depends:
+Provides:
+Section: libs
+Category: Libraries
+Repository: base
+Title: C++ xmpp client library.
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: gloox-1.0.24.tar.bz2
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:   libgloox provides library functionality for implmenting xmpp client in c++.
+https://camaya.net/gloox/
+Albert David <albert dot david at gmail.com>
+@@
+

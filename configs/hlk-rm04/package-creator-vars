@@ -1,0 +1,5 @@
+output-binary-file : ./openwrt/bin/targets/ramips/mt76x8/openwrt-ramips-mt76x8-glinet_gl-mt300n-v2-squashfs-sysupgrade.bin
+mkuimg-util        : ./openwrt/build_dir/target-mipsel_24kc_musl/brbox-v1.1/scripts/brbox-mkuimg.sh
+mkimage-util       : ./host-utils/brbox-mkimage
+image-creator      : ./openwrt/build_dir/target-mipsel_24kc_musl/brbox-v1.1/scripts/create-signed-brbox-proj.sh
+mkimage-type       : BrBoxHlRm04

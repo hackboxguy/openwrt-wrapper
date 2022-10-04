@@ -1,0 +1,12 @@
+#!/bin/sh
+DEFAULT_NAME="brbox" #short name for automate-box
+MACADDR=brb0x
+echo -e "$MACADDR\n$MACADDR" | passwd root 
+uci -q batch <<-EOT
+	set wireless.radio0.disabled=1
+	set system.@system[0].hostname=$DEFAULT_NAME
+	set dhcp.lan.ignore=1
+	set dhcp.lan.dhcpv6=disabled
+	set dhcp.lan.ra=disabled
+	commit 
+EOT

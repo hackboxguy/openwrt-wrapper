@@ -1,0 +1,40 @@
+CONFIG_TARGET_ramips=y
+CONFIG_TARGET_ramips_rt305x=y
+CONFIG_TARGET_ramips_rt305x_DEVICE_hlk-rm04=y
+CONFIG_DEVEL=y
+CONFIG_DOWNLOAD_FOLDER="$(TOPDIR)/../openwrt-dl"
+# CONFIG_DRIVER_11N_SUPPORT is not set
+# CONFIG_DRIVER_11W_SUPPORT is not set
+# CONFIG_FEED_luci is not set
+# CONFIG_FEED_packages is not set
+# CONFIG_FEED_routing is not set
+# CONFIG_FEED_telephony is not set
+CONFIG_LOCALMIRROR="$(TOPDIR)/../openwrt-packages"
+CONFIG_PACKAGE_avahi-daemon-service-http=y
+CONFIG_PACKAGE_avahi-dbus-daemon=y
+CONFIG_PACKAGE_dbus=y
+# CONFIG_PACKAGE_dnsmasq is not set
+# CONFIG_PACKAGE_firewall is not set
+CONFIG_PACKAGE_i2c-tools=y
+# CONFIG_PACKAGE_kmod-cfg80211 is not set
+CONFIG_PACKAGE_kmod-i2c-core=y
+CONFIG_PACKAGE_kmod-i2c-ralink=y
+# CONFIG_PACKAGE_kmod-mac80211 is not set
+# CONFIG_PACKAGE_kmod-rt2800-soc is not set
+# CONFIG_PACKAGE_kmod-rt2x00-lib is not set
+CONFIG_PACKAGE_libavahi-dbus-support=y
+CONFIG_PACKAGE_libdaemon=y
+CONFIG_PACKAGE_libdbus=y
+CONFIG_PACKAGE_libexpat=y
+CONFIG_PACKAGE_libi2c=y
+CONFIG_PACKAGE_librt=y
+CONFIG_PACKAGE_libstdcpp=y
+# CONFIG_PACKAGE_opkg is not set
+CONFIG_PACKAGE_sdp-fmw-target=y
+CONFIG_PACKAGE_zlib=y
+CONFIG_PACKAGE_iw=y
+CONFIG_PACKAGE_kmod-ipt-conntrack=y
+CONFIG_PACKAGE_kmod-ipt-nat=y
+CONFIG_PACKAGE_kmod-nf-conntrack6=y
+CONFIG_PACKAGE_kmod-nf-nat=y
+CONFIG_PACKAGE_wireless-regdb=y

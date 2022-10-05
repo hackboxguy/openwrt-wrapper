@@ -1,0 +1,37 @@
+#!/bin/sh
+DEFAULT_HOST_NAME="remote-kit-000"
+DEFPW=remote-kit-000
+DEFAULT_NAME="remote-kit-000"
+DEFAULT_PW="remote-kit-000"
+DEF_LAN_IP="192.168.20.1"
+
+#if init-remote-box.sh is already called once, then dont run uci defaults
+[ "$(uci -q get system.@system[0].initremotebox)" = "yes" ] && exit 0
+
+echo -e "$DEFPW\n$DEFPW" | passwd root
+uci -q batch <<-EOT
+	set network.lan.ipaddr=$DEF_LAN_IP
+	set wireless.radio0.disabled=0
+	set wireless.default_radio0.ssid=$DEFAULT_NAME
+	set wireless.default_radio0.encryption='psk2+aes'
+	set wireless.default_radio0.key=$DEFAULT_PW
+	set system.@system[0].hostname=$DEFAULT_HOST_NAME
+	set system.@system[0].ttylogin=1
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=22	
+	set network.wan.metric=10
+	set network.wan2=interface
+	set network.wan2.ifname=usb0
+	set network.wan2.device=usb0
+	set network.wan2.proto=dhcp
+	set network.wan2.metric=20
+	set network.wan3=interface
+	set network.wan3.ifname=eth1
+	set network.wan3.proto=dhcp
+	set network.wan3.metric=30
+	set firewall.@zone[1].network='wan wan2 wan3 wan6'
+	commit 
+EOT

@@ -1,0 +1,1 @@
+*/2 * * * * /usr/sbin/check-wan.sh

@@ -1,6 +1,6 @@
 #!/bin/sh
 DEFAULT_HOST_NAME="remote-kit-000"
-DEFPW=remote-kit-000
+DEFPW=remote-kit-000 #Note: override this pw after initial configuration of the openwrt box
 DEFAULT_NAME="remote-kit-000"
 DEFAULT_PW="remote-kit-000"
 DEF_LAN_IP="192.168.20.1"

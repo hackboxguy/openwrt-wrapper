@@ -34,9 +34,11 @@ define Package/aws-iot-pubsub-agent/description
   A demot publish/subscribe agent to work with AWS-IoT-Core.
 endef
 
+CMAKE_OPTIONS += -DCMAKE_PREFIX_PATH=$(BUILD_DIR)/aws-iot-device-sdk-cpp-v2-v1.1/ipkg-install/usr
+
 define Package/aws-iot-pubsub-agent/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/usr/sbin/* $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
 endef
 
 $(eval $(call BuildPackage,aws-iot-pubsub-agent))

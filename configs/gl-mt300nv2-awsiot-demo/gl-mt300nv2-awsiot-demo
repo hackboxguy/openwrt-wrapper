@@ -30,6 +30,7 @@ CONFIG_OPENSSL_WITH_TLS13=y
 CONFIG_PACKAGE_avahi-daemon-service-ssh=y
 CONFIG_PACKAGE_avahi-dbus-daemon=y
 CONFIG_PACKAGE_aws-iot-device-sdk-cpp-v2=y
+CONFIG_PACKAGE_aws-iot-pubsub-agent=y
 CONFIG_PACKAGE_dbus=y
 CONFIG_PACKAGE_i2c-tools=y
 CONFIG_PACKAGE_iftop=y

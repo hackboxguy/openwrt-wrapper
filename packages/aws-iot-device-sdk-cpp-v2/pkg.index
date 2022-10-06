@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/libs/aws-iot-device-sdk-cpp-v2/Makefile
+Package: aws-iot-device-sdk-cpp-v2
+Version: v1.1
+Depends: +libc +libstdcpp +libcurl +zlib +libopenssl
+Conflicts:
+Menu-Depends:
+Provides:
+Section: libs
+Category: Libraries
+Repository: base
+Title: C++ aws device sdk library.
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: aws-iot-device-sdk-cpp-v2-v1.1.tar.xz
+License: Apache-2.0
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:   lws-iot-device-sdk-cpp-v2 provides library functionality for implmenting aws iot clients in c++.
+https://github.com/aws/aws-iot-device-sdk-cpp-v2
+Albert David <albert dot david at gmail.com>
+@@
+

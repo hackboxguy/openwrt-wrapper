@@ -1,0 +1,42 @@
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=aws-iot-pubsub-agent
+PKG_VERSION:=v1.2
+PKG_RELEASE:=1
+
+PKG_SOURCE_URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=dd9381de4f2f4bc0971e8f11fd02eb1cb288c482
+
+PKG_LICENSE:=Apache-2.0
+PKG_LICENSE_FILES:=COPYING.txt
+
+PKG_MAINTAINER:=Albert David <albert dot david at gmail.com>
+
+PKG_BUILD_PARALLEL:=1
+PKG_INSTALL:=1
+
+CMAKE_INSTALL:=1
+
+include $(INCLUDE_DIR)/uclibc++.mk
+include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
+
+define Package/aws-iot-pubsub-agent
+  SECTION:=utils
+  CATEGORY:=Utilities
+  TITLE:=aws-iot-pubsub-agent
+  URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent
+  DEPENDS:=+libc +libstdcpp +aws-iot-device-sdk-cpp-v2
+endef
+
+define Package/aws-iot-pubsub-agent/description
+  A demot publish/subscribe agent to work with AWS-IoT-Core.
+endef
+
+define Package/aws-iot-pubsub-agent/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/usr/sbin/* $(1)/usr/sbin/
+endef
+
+$(eval $(call BuildPackage,aws-iot-pubsub-agent))

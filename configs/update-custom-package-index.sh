@@ -19,3 +19,7 @@ cat ../packages/openwrt-base-scripts/pkg.index >> feeds/packages.index
 #aws-iot-device-sdk-cpp-v2
 ln -s ../../../../packages/aws-iot-device-sdk-cpp-v2 feeds/packages/libs/aws-iot-device-sdk-cpp-v2
 cat ../packages/aws-iot-device-sdk-cpp-v2/pkg.index >> feeds/packages.index
+
+#aws-iot-pubsub-agent
+ln -s ../../../../packages/aws-iot-pubsub-agent feeds/packages/utils/aws-iot-pubsub-agent
+cat ../packages/aws-iot-pubsub-agent/pkg.index >> feeds/packages.index

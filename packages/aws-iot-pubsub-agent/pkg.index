@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/aws-iot-pubsub-agent/Makefile
+Package: aws-iot-pubsub-agent
+Version: v1.2
+Depends: +libc +libstdcpp +aws-iot-device-sdk-cpp-v2
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: aws-iot-pubsub-agent a demo util to work with AWS-IoT-Core
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: aws-iot-device-sdk-cpp-v1.2.tar.gz
+License: Apache-2.0
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:  aws-iot-pubsub-agent provides basic publish/subscribe actions for AWS-IoT-Core cloud.
+https://github.com/hackboxguy/aws-iot-pubsub-agent
+Albert David <albert dot david at gmail.com>
+@@
+

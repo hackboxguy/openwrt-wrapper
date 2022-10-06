@@ -1,8 +1,8 @@
 #!/bin/sh
-DEFAULT_HOST_NAME="remote-kit-000"
-DEFPW=remote-kit-000 #Note: override this pw after initial configuration of the openwrt box
-DEFAULT_NAME="remote-kit-000"
-DEFAULT_PW="remote-kit-000"
+DEFAULT_HOST_NAME="aws-iot-demo"
+DEFPW=aws-iot-demo #Note: override this pw after initial configuration of the openwrt box
+DEFAULT_NAME="aws-iot-demo" #ssid for wifi
+DEFAULT_PW="aws-iot-demo" #wifi password
 DEF_LAN_IP="192.168.20.1"
 
 #if init-remote-box.sh is already called once, then dont run uci defaults

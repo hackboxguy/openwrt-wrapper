@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=dd9381de4f2f4bc0971e8f11fd02eb1cb288c482
+PKG_SOURCE_VERSION:=4b0f4288cd62f09c1d1ebfb92e24740240637ddc
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=COPYING.txt
@@ -39,6 +39,8 @@ CMAKE_OPTIONS += -DCMAKE_PREFIX_PATH=$(BUILD_DIR)/aws-iot-device-sdk-cpp-v2-v1.1
 define Package/aws-iot-pubsub-agent/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc
+	$(CP) $(PKG_INSTALL_DIR)/usr/etc/* $(1)/etc/
 endef
 
 $(eval $(call BuildPackage,aws-iot-pubsub-agent))

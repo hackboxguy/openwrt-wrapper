@@ -15,3 +15,7 @@ cat ../packages/brbox/pkg.index >> feeds/packages.index
 #openwrt-base-scripts
 ln -s ../../../../packages/openwrt-base-scripts feeds/packages/utils/openwrt-base-scripts
 cat ../packages/openwrt-base-scripts/pkg.index >> feeds/packages.index
+
+#aws-iot-device-sdk-cpp-v2
+ln -s ../../../../packages/aws-iot-device-sdk-cpp-v2 feeds/packages/libs/ows-iot-device-sdk-cpp-v2
+cat ../packages/aws-iot-device-sdk-cpp-v2/pkg.index >> feeds/packages.index

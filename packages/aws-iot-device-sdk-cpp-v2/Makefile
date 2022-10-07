@@ -34,20 +34,10 @@ define Package/aws-iot-device-sdk-cpp-v2/description
   aws-iot-device-sdk-cpp-v2 provides AWS-IoT connectivity api interface
 endef
 
-CMAKE_OPTIONS += -DBUILD_SHARED_LIBS=ON
-
-define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/aws $(1)/usr/include/	
-	$(INSTALL_DIR) $(1)/usr/include/openssl
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/openssl $(1)/usr/include/	
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*.so* $(1)/usr/lib/
-endef
 
 define Package/aws-iot-device-sdk-cpp-v2/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/lib*.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib $(1)/usr/
 endef
 
 $(eval $(call BuildPackage,aws-iot-device-sdk-cpp-v2))

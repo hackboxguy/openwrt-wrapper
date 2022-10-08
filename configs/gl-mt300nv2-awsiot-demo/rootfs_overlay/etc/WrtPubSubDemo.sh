@@ -23,8 +23,6 @@ wait_for_timesync() {
 
 echo "Starting $APP" > $STARTUP_LOGFILE
 
-wait_for_timesync #wait for ntp to sync
-
 #certificate and private-key files are must, without them aws-iot-pubsub-demo cannot proceed
 if [ -f $CONFIG_PATH/*certificate.pem ]; then
 	CERT_FILE=$(ls $CONFIG_PATH/|grep "certificate.pem")
@@ -109,6 +107,8 @@ if [ $? == 0 ]; then
 	INTERVAL=$(cat $CONFIG_FILE | grep publish-interval-sec | awk '{print $2}')
 	INTERVAL_ARGS="--pub_interval $INTERVAL"
 fi
+
+wait_for_timesync #wait for ntp to sync
 
 #start the agent with all required args
 $APP --ca_file $CA_FILE --cert $CERT_FILE_ARG --key $KEY_FILE_ARG --endpoint $ENDPOINT $VERBOSE_ARGS $COUNT_ARGS $TOPIC_ARGS $CLTID_ARGS $INTERVAL_ARGS > $VERBOSE_FILE 2>&1 &

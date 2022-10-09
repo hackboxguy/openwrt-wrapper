@@ -36,6 +36,10 @@ cp ../configs/$OPENWRT_SYSTEM_CONFIG/*.dts  target/linux/ramips/dts/
 cp ../configs/$OPENWRT_SYSTEM_CONFIG/*.dtsi target/linux/ramips/dts/
 [ $FULL_BUILD = "yes" ] && ./scripts/feeds update -a
 
+#update luci packages
+./scripts/feeds update packages luci
+./scripts/feeds install -a -p luci
+
 #update feeds/package.index with sw packages that are not part of standard openwrt packages
 ../configs/update-custom-package-index.sh
 

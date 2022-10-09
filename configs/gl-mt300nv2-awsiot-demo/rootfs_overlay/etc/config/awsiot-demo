@@ -1,0 +1,10 @@
+
+config info 'Settings'
+	option clientid 'test-1'
+	option topic 'test/topic'
+	option interval '5'
+	option count '10'
+	option endpoint 'replace.this.with.your.endpoint'
+	option verbosity 'Info'
+	option message 'Hello-World'
+

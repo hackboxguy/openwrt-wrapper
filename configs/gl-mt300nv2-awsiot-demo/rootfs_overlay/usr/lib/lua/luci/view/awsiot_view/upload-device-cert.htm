@@ -1,0 +1,19 @@
+<%+header%>
+<form method="post" action="<%=REQUEST_URI%>"
+enctype="multipart/form-data">
+<div id="zone-content-wrapper">
+  <div id="zone-content">
+    <div class="error"><%=error%></div>
+    <div class="cbi-value">
+      <label class="cbi-value-title tippable" data-tip="<%:Click on the
+field below to upload a file.%>"><%:Upload%></label>
+      <input type="file" name="input-name" id="media" />
+      <div class="upload-description">
+        <%:Upload%> Select device certificate to upload
+      </div>
+    </div>
+  </div>
+</div>
+<input type="submit" name="input-name" value="submit">
+</form>
+<%+footer%>

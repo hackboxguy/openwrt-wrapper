@@ -1,0 +1,6 @@
+<%+header%>
+<h2><a id="content" name="content"><%:Aws-IoT Service Startup Log%></a></h2>
+<div id="content_syslog">
+<textarea readonly="readonly" wrap="off" rows="<%=awsiotlogst:cmatch("\n")+2%>" id="syslog"><%=awsiotlogst:pcdata()%></textarea>
+</div>
+<%+footer%>

@@ -3,7 +3,8 @@
 APP=aws-iot-pubsub-agent
 TIMESYNC_WAIT=10 #wait 10seconds before giving up for timesync check
 CONFIG_PATH=/root
-CONFIG_FILE=$CONFIG_PATH/aws-iot-pubsub-agent.conf
+#CONFIG_FILE=$CONFIG_PATH/aws-iot-pubsub-agent.conf
+CONFIG_FILE=/tmp/aws-iot-pubsub-agent.conf
 STARTUP_LOGFILE=/tmp/$APP.startuplog
 
 wait_for_timesync() {
@@ -22,6 +23,7 @@ wait_for_timesync() {
 }
 
 echo "Starting $APP" > $STARTUP_LOGFILE
+/usr/sbin/awsiot-demo-uci-to-conf.sh $CONFIG_FILE 
 
 #certificate and private-key files are must, without them aws-iot-pubsub-demo cannot proceed
 if [ -f $CONFIG_PATH/*certificate.pem ]; then

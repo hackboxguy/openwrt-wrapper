@@ -8,4 +8,5 @@ f = d:option(Value, "count", "Publish Count"); f.optional=false; f.rmempty = fal
 g = d:option(Value, "verbosity", "Debug Verbosity"); g.optional=false; g.rmempty = false;
 h = d:option(Value, "message", "Publish Message"); h.optional=false; h.rmempty = false;
 i = d:option(Value, "subtopic", "Subscribe Topic"); i.optional=false; i.rmempty = false;
+j = d:option(Value, "subtopichandler", "Subscribe Topic Handler"); j.optional=false; j.rmempty = false;
 return m

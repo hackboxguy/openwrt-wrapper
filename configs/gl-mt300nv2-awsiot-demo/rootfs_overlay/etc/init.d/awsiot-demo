@@ -24,8 +24,9 @@ start_service() {
 	TOPIC="$(uci_get awsiot-demo.Settings.topic)"
 	MSG=\""$(uci_get awsiot-demo.Settings.message)"\"
 	SUBTOPIC="$(uci_get awsiot-demo.Settings.subtopic)"
+	SUBTOPICHNDL="$(uci_get awsiot-demo.Settings.subtopichandler)"
 	procd_open_instance
-        procd_set_param command /bin/sh -c "$PROG --subtopic $SUBTOPIC --message $MSG --topic $TOPIC --verbosity $VERBOSE --count $COUNT --pub_interval $INTERVAL --endpoint $ENDPT --clientid $CLTID --ca_file $CAFILE --cert $CERTFILE --key $KEYFILE > $LOGFILE 2>&1"
+        procd_set_param command /bin/sh -c "$PROG --subtopic_handler $SUBTOPICHNDL --subtopic $SUBTOPIC --message $MSG --topic $TOPIC --verbosity $VERBOSE --count $COUNT --pub_interval $INTERVAL --endpoint $ENDPT --clientid $CLTID --ca_file $CAFILE --cert $CERTFILE --key $KEYFILE > $LOGFILE 2>&1"
 	procd_set_param respawn
         procd_close_instance
 }

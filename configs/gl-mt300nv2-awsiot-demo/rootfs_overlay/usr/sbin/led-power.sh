@@ -6,6 +6,7 @@ if [ ! -f  "$LED_NODE" ]; then
 	return 1
 fi
 
+#read action
 if [ -z $1 ]; then
 	VAL=$(cat $LED_NODE)
 	if [ $VAL = "0" ]; then
@@ -15,10 +16,26 @@ if [ -z $1 ]; then
 	       echo "on"
 	       return 0
 	fi
-elif [ $1 = "on" ]; then
+fi
+
+
+if [ -f $1 ]; then
+        #check if argument $1 is a json file
+        JQOBJ=$(jq type < $1)
+        if [ $? = "0" ]; then #this is a valid json file
+                MYARG=$(jq -r .powerstate $1)
+        else
+                MYARG=$1 #just take argument as on/off string
+        fi
+else
+        MYARG=$1
+fi
+
+#write action
+if [ $MYARG = "on" ]; then
 	echo 1 > $LED_NODE
 	return 0
-elif [ $1 = "off" ]; then
+elif [ $MYARG = "off" ]; then
 	echo 0 > $LED_NODE
 	return 0
 else

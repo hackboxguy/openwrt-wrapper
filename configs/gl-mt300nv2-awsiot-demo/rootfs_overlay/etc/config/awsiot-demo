@@ -8,5 +8,5 @@ config info 'Settings'
 	option verbosity 'Info'
 	option message '{ \"message\": \"Hello world!\" }'
 	option subtopic 'test/topic_led'
-	option subtopichandler '/usr/sbin/led-control.sh'
+	option subtopichandler '/usr/sbin/led-power.sh'
 

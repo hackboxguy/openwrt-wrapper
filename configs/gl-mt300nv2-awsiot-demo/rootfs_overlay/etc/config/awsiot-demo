@@ -6,5 +6,6 @@ config info 'Settings'
 	option count '10'
 	option endpoint 'replace.this.with.your.endpoint'
 	option verbosity 'Info'
-	option message 'Hello-World'
+	option message '{ \"message\": \"Hello world!\" }'
+	option subtopic 'test/topic_led'
 

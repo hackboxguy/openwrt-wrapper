@@ -1,0 +1,42 @@
+#!/bin/sh /etc/rc.common
+START=98
+USE_PROCD=1
+#for start, use script, and for stop just send sigterm to aws-iot-pubsub-agent
+PROG=/usr/sbin/aws-iot-pubsub-agent
+CLTID=test-1
+CAFILE=/etc/AmazonRootCA1.pem
+CERTFILE=/root/certificate.pem
+KEYFILE=/root/private.pem.key
+LOGFILE=/tmp/aws-iot-pubsub-agent.log
+
+boot()
+{
+  # Wait for max 10sec for wan interface to be ready
+  ubus -t 10 wait_for network.interface network.wan 2>/dev/null
+  rc_procd start_service
+}
+
+start_service() {
+        COUNT="$(uci_get awsiot-demo.Settings.count)"
+        INTERVAL="$(uci_get awsiot-demo.Settings.interval)"
+	ENDPT="$(uci_get awsiot-demo.Settings.endpoint)"
+	VERBOSE="$(uci_get awsiot-demo.Settings.verbosity)"
+	TOPIC="$(uci_get awsiot-demo.Settings.topic)"
+	MSG=\""$(uci_get awsiot-demo.Settings.message)"\"
+	SUBTOPIC="$(uci_get awsiot-demo.Settings.subtopic)"
+	procd_open_instance
+        procd_set_param command /bin/sh -c "$PROG --subtopic $SUBTOPIC --message $MSG --topic $TOPIC --verbosity $VERBOSE --count $COUNT --pub_interval $INTERVAL --endpoint $ENDPT --clientid $CLTID --ca_file $CAFILE --cert $CERTFILE --key $KEYFILE > $LOGFILE 2>&1"
+	procd_set_param respawn
+        procd_close_instance
+}
+stop_service() {
+        service_stop "$PROG" #"aws-iot-pubsub-agent"
+}
+service_triggers () {
+        procd_open_trigger
+        procd_add_reload_trigger "awsiot-demo"
+        procd_add_config_trigger "config.change" "awsiot-demo" /etc/init.d/awsiot-demo restart
+        procd_add_config_trigger "config.change" "/etc/config/awsiot-demo" /etc/init.d/awsiot-demo restart
+	procd_close_trigger
+}
+

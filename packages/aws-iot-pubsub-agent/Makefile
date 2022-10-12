@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=fa74001e499ded4fef6081e241e357593ffcf077
+PKG_SOURCE_VERSION:=c0dd6fe13b394f5b8cfa6914abcbe210e804f62e
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=COPYING.txt

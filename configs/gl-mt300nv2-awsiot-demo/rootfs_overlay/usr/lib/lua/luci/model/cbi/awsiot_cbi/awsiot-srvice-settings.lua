@@ -7,4 +7,5 @@ e = d:option(Value, "interval", "Publish Inverval Sec"); e.optional=false; e.rme
 f = d:option(Value, "count", "Publish Count"); f.optional=false; f.rmempty = false;
 g = d:option(Value, "verbosity", "Debug Verbosity"); g.optional=false; g.rmempty = false;
 h = d:option(Value, "message", "Publish Message"); h.optional=false; h.rmempty = false;
+i = d:option(Value, "subtopic", "Subscribe Topic"); i.optional=false; i.rmempty = false;
 return m

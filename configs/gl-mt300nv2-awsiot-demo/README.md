@@ -1,11 +1,11 @@
 ## AWS-IoT-Demo: aws-iot-device-sdk-cpp-v2 based pub-sub demo on openwrt pocket router - GL-MT300NV2
 
-This is a openwrt config for generating Linux image for GM-MT300NV2 pocket router. Purpose of this Linux image is to show a pub-sub demo using aws-iot-device-sdk-cpp-v2 library, just update your pocket router, install private-key and device-certificate and after reboot, Hell-World test message would start publishing to AWS cloud
+This is a openwrt config for generating Linux image for GL-MT300NV2 pocket router. Purpose of this Linux image is to show a pub-sub demo using aws-iot-device-sdk-cpp-v2 library, just update your pocket router, install private-key and device-certificate and after reboot, Hell-World test message would start publishing to AWS cloud
 
 ## Maintainer
 	Albert David (albert.david@gmail.com)
 
-## Build steps for creating openwrt AWS-IoT-Demo Linux image(gl-mt300nv2-awsiot-demo.bin) for GL-MT300NV2 HW
+## Build steps for creating openwrt AWS-IoT-Demo Linux image for GL-MT300NV2 HW
 1. ```git clone https://github.com/hackboxguy/openwrt-wrapper.git```
 2. ```cd openwrt-wrapper``` cd to cloned openwrt-wrapper directory
 3. ```ln -s ~/openwrt-dl openwrt-dl``` Preserve download directory - this will help in reducing the total build time

@@ -38,6 +38,9 @@ service_triggers () {
         procd_add_reload_trigger "awsiot-demo"
         procd_add_config_trigger "config.change" "awsiot-demo" /etc/init.d/awsiot-demo restart
         procd_add_config_trigger "config.change" "/etc/config/awsiot-demo" /etc/init.d/awsiot-demo restart
+	#lets set initremotebox=yes so that /etc/uci-defaults doesnt overwrite our settings during swupdate
+	uci set "system.@system[0].initremotebox=yes"
+	uci commit
 	procd_close_trigger
 }
 

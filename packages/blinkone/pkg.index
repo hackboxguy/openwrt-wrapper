@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/blinkone/Makefile
+Package: blinkone
+Version: v1.1
+Depends: +libc +libstdcpp +libudev-zero +hidapi
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: blinkeone utility for controlling usb based LED.
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: blinkone-v1.1.tar.xz
+License: Apache-2.0
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description: blinkone package provides functionality for controlling USB based RGB LED.
+https://github.com/todbot/blink1-tool
+Albert David <albert dot david at gmail.com>
+@@
+

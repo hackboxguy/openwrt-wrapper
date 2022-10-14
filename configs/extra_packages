@@ -1,1 +1,1 @@
-iputils-ping iftop gloox brbox curl screen iperf avahi-daemon lighttpd sshpass i2c-tools jq libwebsockets fcgi openwrt-base-scripts aws-iot-device-sdk-cpp-v2 aws-iot-pubsub-agent luci
+iputils-ping iftop gloox brbox curl screen iperf avahi-daemon lighttpd sshpass i2c-tools jq libwebsockets fcgi openwrt-base-scripts aws-iot-device-sdk-cpp-v2 aws-iot-pubsub-agent luci hidapi usb-tempered

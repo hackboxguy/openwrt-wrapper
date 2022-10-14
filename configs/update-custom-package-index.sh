@@ -23,3 +23,7 @@ cat ../packages/aws-iot-device-sdk-cpp-v2/pkg.index >> feeds/packages.index
 #aws-iot-pubsub-agent
 ln -s ../../../../packages/aws-iot-pubsub-agent feeds/packages/utils/aws-iot-pubsub-agent
 cat ../packages/aws-iot-pubsub-agent/pkg.index >> feeds/packages.index
+
+#usb-tempered
+ln -s ../../../../packages/usb-tempered feeds/packages/utils/usb-tempered
+cat ../packages/usb-tempered/pkg.index >> feeds/packages.index

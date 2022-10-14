@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/usb-tempered/Makefile
+Package: usb-tempered
+Version: v1.1
+Depends: +libc +libstdcpp +hidapi
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: usb-tempered utility for usb temp sensor.
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: usb-tempered-v1.1.tar.xz
+License: Apache-2.0
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description: usb-tempered package provides functionality for reading temperature values from usb dongle.
+https://gitlab.com/mulx/TEMPered
+Albert David <albert dot david at gmail.com>
+@@
+

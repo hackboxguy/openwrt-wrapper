@@ -6,7 +6,8 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/openwrt-base-scripts.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=c67fd17ffcc8c4743b153c7998574a9f36247b38
+PKG_SOURCE_VERSION:=1e8c2ce5c4a25b4debeda39cac9aec5ea46f6cc6
+#c67fd17ffcc8c4743b153c7998574a9f36247b38
 
 PKG_LICENSE:=LGPL-2.1
 PKG_LICENSE_FILES:=COPYING.txt
@@ -15,9 +16,9 @@ PKG_MAINTAINER:=Albert David <albert dot david at gmail.com>
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-
+PKG_BUILD_DEPENDS:=+argp-standalone
 CMAKE_INSTALL:=1
-
+TARGET_LDFLAGS += -largp
 include $(INCLUDE_DIR)/uclibc++.mk
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk

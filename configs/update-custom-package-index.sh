@@ -27,3 +27,7 @@ cat ../packages/aws-iot-pubsub-agent/pkg.index >> feeds/packages.index
 #usb-tempered
 ln -s ../../../../packages/usb-tempered feeds/packages/utils/usb-tempered
 cat ../packages/usb-tempered/pkg.index >> feeds/packages.index
+
+#brbox-minimal
+ln -s ../../../../packages/brbox-minimal feeds/packages/utils/brbox-minimal
+cat ../packages/brbox-minimal/pkg.index >> feeds/packages.index

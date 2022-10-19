@@ -27,7 +27,7 @@ define Package/aws-iot-pubsub-agent
   CATEGORY:=Utilities
   TITLE:=aws-iot-pubsub-agent
   URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent
-  DEPENDS:=+libc +libstdcpp +aws-iot-device-sdk-cpp-v2
+  DEPENDS:=+libc +libstdcpp +cJSON +aws-iot-device-sdk-cpp-v2
 endef
 
 define Package/aws-iot-pubsub-agent/description

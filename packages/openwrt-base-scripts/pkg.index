@@ -1,7 +1,7 @@
 Source-Makefile: feeds/packages/utils/openwrt-base-scripts/Makefile
 Package: openwrt-base-scripts
 Version: v1.1
-Depends: +libc +hidapi +libusb-1.0 +libusb-compat
+Depends: +libc +hidapi +libusb-1.0 +libusb-compat +cJSON
 Conflicts:
 Menu-Depends:
 Provides:

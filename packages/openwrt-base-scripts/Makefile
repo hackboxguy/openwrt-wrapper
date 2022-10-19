@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/openwrt-base-scripts.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=9b6fc92f757da9221e76a210c27520ef9c6c7d82
+PKG_SOURCE_VERSION:=9c320498ca8e100e10169386cc3ab4797b959735
 
 PKG_LICENSE:=LGPL-2.1
 PKG_LICENSE_FILES:=COPYING.txt
@@ -27,7 +27,7 @@ define Package/openwrt-base-scripts
   CATEGORY:=Utilities
   TITLE:=openwrt-base-scripts
   URL:=https://github.com/hackboxguy/openwrt-base-scripts
-  DEPENDS:=+libc +hidapi +libusb-1.0 +libusb-compat
+  DEPENDS:=+libc +hidapi +libusb-1.0 +libusb-compat +cJSON
 endef
 
 define Package/openwrt-base-scripts/description

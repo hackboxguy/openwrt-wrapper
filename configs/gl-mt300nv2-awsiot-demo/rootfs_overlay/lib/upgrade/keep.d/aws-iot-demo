@@ -1,4 +1,0 @@
-/root/*.pem
-/root/*.pem.key
-/root/aws-iot-pubsub-agent.conf
-/etc/config/awsiot-demo

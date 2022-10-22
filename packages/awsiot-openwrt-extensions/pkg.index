@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/awsiot-openwrt-extensions/Makefile
+Package: awsiot-openwrt-extensions
+Version: v1.1
+Depends: +libc
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: awsiot-openwrt-extensions set of files for aws-iot-demo application for openwrt
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: awsiot-openwrt-extensions-v1.1.tar.gz
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:  awsiot-openwrt-extensions provides aws-iot-demo functionality for openwrt linux system.
+https://github.com/hackboxguy/awsiot-openwrt-extensions
+Albert David <albert dot david at gmail.com>
+@@
+

@@ -31,3 +31,7 @@ cat ../packages/usb-tempered/pkg.index >> feeds/packages.index
 #brbox-minimal
 ln -s ../../../../packages/brbox-minimal feeds/packages/utils/brbox-minimal
 cat ../packages/brbox-minimal/pkg.index >> feeds/packages.index
+
+#awsiot-openwrt-extensions
+ln -s ../../../../packages/awsiot-openwrt-extensions feeds/packages/utils/awsiot-openwrt-extensions
+cat ../packages/awsiot-openwrt-extensions/pkg.index >> feeds/packages.index

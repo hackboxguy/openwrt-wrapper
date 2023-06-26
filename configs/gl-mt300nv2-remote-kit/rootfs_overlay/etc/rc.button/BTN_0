@@ -1,0 +1,13 @@
+#!/bin/sh
+#this script is used for connecting to default wifi ssid and pw
+#on remote-kit, when slider-switch id turned ON, then wifi will try to connect to RemoteTestNet
+WIFI_CFG_HANDLER=/usr/sbin/wifi-config.sh
+WIFI_CTL_HANDLER=/usr/sbin/wifi-control.sh
+if [ "$ACTION" == "pressed" ]; then
+	/etc/init.d/WrtXmproxyStartupScr stop
+	sleep 3
+	$WIFI_CFG_HANDLER "internet" "RemoteTestNet" "r3m0te,KIT"
+	$WIFI_CTL_HANDLER "internet" "on"
+	sleep 3
+	/etc/init.d/WrtXmproxyStartupScr start
+fi

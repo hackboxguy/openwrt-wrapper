@@ -1,3 +1,4 @@
 /etc/xmproxy/xmpp-login.txt
 /etc/xmproxy/xmpp-alias-list.txt
 /etc/xmproxy/xmpp-bot-name.txt
+/etc/xmproxy/check-wan-periodically.txt

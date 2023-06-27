@@ -6,7 +6,7 @@ This is a openwrt config for generating Linux image for GM-MT300NV2 pocket route
 	Albert David (albert.david@gmail.com)
 
 ## Build steps for creating openwrt Remote-Kit Linux image for GL-MT300NV2 HW
-1. ```git clone https://github.com/hackboxguy/openwrt-wrapper.git```
+1. ```git clone --recursive https://github.com/hackboxguy/openwrt-wrapper.git```
 2. ```cd openwrt-wrapper``` cd to cloned openwrt-wrapper directory
 3. ```ln -s ~/openwrt-dl openwrt-dl``` Preserve download directory - this will help in reducing the total build time
 4. ```ln -s ~/openwrt-packages openwrt-packages``` Preserve packages directory

@@ -1,0 +1,55 @@
+#!/bin/sh
+DEFAULT_HOST_NAME="remote-kit-000"
+DEFPW=remote-kit-000 #Note: override this pw after initial configuration of the openwrt box
+DEFAULT_NAME="remote-kit-000"
+DEFAULT_PW="remote-kit-000"
+DEF_LAN_IP="192.168.20.1"
+
+#if init-remote-box.sh is already called once, then dont run uci defaults
+[ "$(uci -q get system.@system[0].initremotebox)" = "yes" ] && exit 0
+
+echo -e "$DEFPW\n$DEFPW" | passwd root
+uci -q batch <<-EOT
+	set network.lan.ipaddr=$DEF_LAN_IP
+	set wireless.radio0.disabled=0
+	set wireless.radio0.cell_density=0
+	set system.@system[0].hostname=$DEFAULT_HOST_NAME
+	set system.@system[0].ttylogin=1
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].enabled=1
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=22
+	set network.wan.metric=10
+	set network.wan2=interface
+	set network.wan2.ifname=usb0
+	set network.wan2.device=usb0
+	set network.wan2.proto=dhcp
+	set network.wan2.metric=20
+	set network.wan3=interface
+	set network.wan3.ifname=eth1
+	set network.wan3.proto=dhcp
+	set network.wan3.metric=30
+	set network.wan3.device=eth1
+	set firewall.@zone[1].network='wan wan2 wan3 wan6 wwan'
+	set network.wwan=interface
+	set network.wwan.proto=dhcp
+	set wireless.default_radio0=wifi-iface
+	set wireless.default_radio0.device=radio0
+	set wireless.default_radio0.mode=ap
+	set wireless.default_radio0.network=lan
+	set wireless.default_radio0.ssid=$DEFAULT_NAME
+	set wireless.default_radio0.encryption='psk2'
+	set wireless.default_radio0.key=$DEFAULT_PW
+	set wireless.default_radio0.disabled=1
+        set wireless.wifinet1=wifi-iface
+        set wireless.wifinet1.device=radio0
+        set wireless.wifinet1.mode=sta
+        set wireless.wifinet1.network=wwan
+        set wireless.wifinet1.ssid=RemoteTestNet
+        set wireless.wifinet1.encryption='psk2'
+        set wireless.wifinet1.key=r3m0te,KIT
+        set wireless.wifinet1.disabled=1
+	commit 
+EOT

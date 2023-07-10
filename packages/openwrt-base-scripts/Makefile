@@ -33,7 +33,7 @@ endef
 define Package/openwrt-base-scripts/description
   openwrt-base-scripts provides basic set of scripts for openwrt-linux-system.
 endef
-
+CMAKE_OPTIONS += -DCMAKE_CXX_COMPILER_FORCED=TRUE
 define Package/openwrt-base-scripts/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/usr/sbin/* $(1)/usr/sbin/

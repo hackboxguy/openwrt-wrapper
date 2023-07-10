@@ -12,6 +12,7 @@ echo -e "$DEFPW\n$DEFPW" | passwd root
 uci -q batch <<-EOT
 	set network.lan.ipaddr=$DEF_LAN_IP
 	set wireless.radio0.disabled=0
+	set wireless.radio0.channel=1
 	set wireless.radio0.cell_density=0
 	set system.@system[0].hostname=$DEFAULT_HOST_NAME
 	set system.@system[0].ttylogin=1
@@ -42,7 +43,7 @@ uci -q batch <<-EOT
 	set wireless.default_radio0.ssid=$DEFAULT_NAME
 	set wireless.default_radio0.encryption='psk2'
 	set wireless.default_radio0.key=$DEFAULT_PW
-	set wireless.default_radio0.disabled=1
+	set wireless.default_radio0.disabled=0
         set wireless.wifinet1=wifi-iface
         set wireless.wifinet1.device=radio0
         set wireless.wifinet1.mode=sta

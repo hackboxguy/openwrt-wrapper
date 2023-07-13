@@ -15,6 +15,7 @@ uci -q batch <<-EOT
 	set wireless.radio0.channel=1
 	set wireless.radio0.band=2g
 	set wireless.radio0.htmode=HT20
+	set wireless.radio0.country=DE
 	set wireless.radio0.cell_density=0
 	set system.@system[0].hostname=$DEFAULT_HOST_NAME
 	set system.@system[0].ttylogin=1

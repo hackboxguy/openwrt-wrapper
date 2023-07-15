@@ -1,0 +1,77 @@
+CONFIG_TARGET_ath79=y
+CONFIG_TARGET_ath79_generic=y
+CONFIG_TARGET_ath79_generic_DEVICE_glinet_gl-ar150=y
+CONFIG_DEVEL=y
+CONFIG_TOOLCHAINOPTS=y
+CONFIG_BUSYBOX_CUSTOM=y
+CONFIG_BUSYBOX_CONFIG_LSUSB=y
+CONFIG_DOWNLOAD_FOLDER="$(TOPDIR)/../openwrt-dl"
+CONFIG_DRIVER_11AC_SUPPORT=y
+# CONFIG_FEED_luci is not set
+# CONFIG_FEED_packages is not set
+# CONFIG_FEED_routing is not set
+# CONFIG_FEED_telephony is not set
+CONFIG_LIBCURL_COOKIES=y
+CONFIG_LIBCURL_FILE=y
+CONFIG_LIBCURL_FTP=y
+CONFIG_LIBCURL_HTTP=y
+CONFIG_LIBCURL_MBEDTLS=y
+CONFIG_LIBCURL_NGHTTP2=y
+CONFIG_LIBCURL_NO_SMB="!"
+CONFIG_LIBCURL_PROXY=y
+CONFIG_LOCALMIRROR="$(TOPDIR)/../openwrt-packages"
+CONFIG_PACKAGE_avahi-daemon-service-http=y
+CONFIG_PACKAGE_avahi-dbus-daemon=y
+CONFIG_PACKAGE_avahi-utils=y
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_dbus=y
+CONFIG_PACKAGE_i2c-tools=y
+# CONFIG_PACKAGE_kmod-ath is not set
+# CONFIG_PACKAGE_kmod-ath9k is not set
+CONFIG_PACKAGE_kmod-atm=y
+CONFIG_PACKAGE_kmod-fs-configfs=y
+CONFIG_PACKAGE_kmod-hid=y
+CONFIG_PACKAGE_kmod-hid-generic=y
+CONFIG_PACKAGE_kmod-i2c-core=y
+CONFIG_PACKAGE_kmod-i2c-tiny-usb=y
+CONFIG_PACKAGE_kmod-input-core=y
+CONFIG_PACKAGE_kmod-input-evdev=y
+CONFIG_PACKAGE_kmod-ipt-conntrack=y
+CONFIG_PACKAGE_kmod-ipt-core=y
+CONFIG_PACKAGE_kmod-ipt-nat=y
+CONFIG_PACKAGE_kmod-leds-gpio=y
+CONFIG_PACKAGE_kmod-mt76-core=y
+CONFIG_PACKAGE_kmod-mt7603=y
+CONFIG_PACKAGE_kmod-nf-ipt=y
+CONFIG_PACKAGE_kmod-usb-acm=y
+CONFIG_PACKAGE_kmod-usb-atm=y
+CONFIG_PACKAGE_kmod-usb-gadget-serial=y
+CONFIG_PACKAGE_kmod-usb-hid=y
+CONFIG_PACKAGE_kmod-usb-lib-composite=y
+CONFIG_PACKAGE_kmod-usb-serial=y
+CONFIG_PACKAGE_kmod-usb-serial-cp210x=y
+CONFIG_PACKAGE_kmod-usb-serial-ftdi=y
+CONFIG_PACKAGE_kmod-usb-serial-pl2303=y
+CONFIG_PACKAGE_kmod-usb-serial-ti-usb=y
+CONFIG_PACKAGE_libavahi-client=y
+CONFIG_PACKAGE_libavahi-dbus-support=y
+CONFIG_PACKAGE_libcurl=y
+CONFIG_PACKAGE_libdaemon=y
+CONFIG_PACKAGE_libdbus=y
+CONFIG_PACKAGE_libexpat=y
+CONFIG_PACKAGE_libgdbm=y
+CONFIG_PACKAGE_libi2c=y
+CONFIG_PACKAGE_libmbedtls=y
+CONFIG_PACKAGE_libncurses=y
+CONFIG_PACKAGE_libnghttp2=y
+CONFIG_PACKAGE_librt=y
+CONFIG_PACKAGE_libstdcpp=y
+# CONFIG_PACKAGE_opkg is not set
+CONFIG_PACKAGE_terminfo=y
+CONFIG_PACKAGE_triggerhappy=y
+CONFIG_PACKAGE_zlib=y
+CONFIG_STRIP_ARGS="--strip-all"
+CONFIG_TARGET_INITRAMFS_COMPRESSION_LZMA=y
+# CONFIG_TARGET_INITRAMFS_COMPRESSION_NONE is not set
+# CONFIG_USE_SSTRIP is not set
+CONFIG_USE_STRIP=y

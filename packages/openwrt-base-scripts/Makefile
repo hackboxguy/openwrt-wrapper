@@ -15,7 +15,7 @@ PKG_MAINTAINER:=Albert David <albert dot david at gmail.com>
 
 PKG_BUILD_PARALLEL:=1
 PKG_INSTALL:=1
-#PKG_BUILD_DEPENDS:=+argp-standalone
+PKG_BUILD_DEPENDS:=+argp-standalone
 CMAKE_INSTALL:=1
 TARGET_LDFLAGS += -largp
 include $(INCLUDE_DIR)/uclibc++.mk

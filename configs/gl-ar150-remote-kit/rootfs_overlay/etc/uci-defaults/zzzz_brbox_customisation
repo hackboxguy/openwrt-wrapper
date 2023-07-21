@@ -20,7 +20,13 @@ uci -q batch <<-EOT
 	set firewall.@rule[-1].target=ACCEPT
 	set firewall.@rule[-1].enabled=1
 	set firewall.@rule[-1].proto=tcp
-	set firewall.@rule[-1].dest_port=22	
+	set firewall.@rule[-1].dest_port=22
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].enabled=1
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=80
 	set network.wan.metric=10
 	set network.wan2=interface
 	set network.wan2.ifname=usb0
@@ -35,6 +41,7 @@ uci -q batch <<-EOT
 	set firewall.@zone[1].network='wan wan2 wan3 wan6 wwan'
 	set network.wwan=interface
 	set network.wwan.proto=dhcp
+	set dhcp.lan.dhcp_option=42,192.168.20.1
 
 	set wireless.default_radio0=wifi-iface
 	set wireless.default_radio0.device=radio0
@@ -43,7 +50,7 @@ uci -q batch <<-EOT
 	set wireless.default_radio0.ssid=$DEFAULT_NAME
 	set wireless.default_radio0.encryption='psk2'
 	set wireless.default_radio0.key=$DEFAULT_PW
-	set wireless.default_radio0.disabled=1
+	set wireless.default_radio0.disabled=0
 
         set wireless.wifinet1=wifi-iface
         set wireless.wifinet1.device=radio0

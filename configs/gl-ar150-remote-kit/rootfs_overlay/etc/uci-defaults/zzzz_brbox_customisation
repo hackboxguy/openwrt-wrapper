@@ -64,5 +64,25 @@ uci -q batch <<-EOT
         set wireless.wifinet1.encryption='psk2'
         set wireless.wifinet1.key=r3m0te,KIT
         set wireless.wifinet1.disabled=1
+
+	add dhcp srvhost
+	set dhcp.@srvhost[-1]=srvhost
+	set dhcp.@srvhost[-1].port=8883
+	set dhcp.@srvhost[-1].class=1
+	set dhcp.@srvhost[-1].weight=0
+	set dhcp.@srvhost[-1].srv=_remotemanagement._tcp.remote.com
+	set dhcp.@srvhost[-1].target=remote-ctrl-123456789abc.remote.com
+	set dhcp.@dnsmasq[0].domain=remote.com
+	
+	add firewall redirect
+	set firewall.@redirect[-1]=redirect
+	set firewall.@redirect[-1].dest=lan
+	set firewall.@redirect[-1].target=DNAT
+	set firewall.@redirect[-1].name=devicesrv
+	set firewall.@redirect[-1].src=wan
+	set firewall.@redirect[-1].src_dport=443
+	set firewall.@redirect[-1].dest_port=443
+	set firewall.@redirect[-1].dest_ip=192.168.20.1
+
 	commit 
 EOT

@@ -121,6 +121,8 @@ uci set "wireless.default_radio0.ssid=$NAME"
 uci set "wireless.default_radio0.key=$SYSPW"
 [ $? != 0 ] && echo "Failed to set ssidpw" && exit 1
 uci set "system.@system[0].hostname=$NAME"
+uci set "network.lan.hostname=$NAME"
+uci set "network.wan.hostname=$NAME"
 [ $? != 0 ] && echo "Failed to set hostname" && exit 1
 
 echo -e "$SYSPW\n$SYSPW" | passwd root 1>/dev/nulll 2>/dev/null

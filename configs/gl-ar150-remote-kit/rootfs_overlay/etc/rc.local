@@ -1,0 +1,5 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+echo ds1307 0x68 > /sys/bus/i2c/devices/i2c-0/new_device
+/etc/init.d/sysfixtime start
+exit 0

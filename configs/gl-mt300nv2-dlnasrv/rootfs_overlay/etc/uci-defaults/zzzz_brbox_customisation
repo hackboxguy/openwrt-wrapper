@@ -21,7 +21,12 @@ uci -q batch <<-EOT
 	set firewall.@rule[-1].src=wan
 	set firewall.@rule[-1].target=ACCEPT
 	set firewall.@rule[-1].proto=tcp
-	set firewall.@rule[-1].dest_port=22	
+	set firewall.@rule[-1].dest_port=22
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=80
 	set network.wan.metric=10
 	set network.wan2=interface
 	set network.wan2.ifname=usb0
@@ -34,6 +39,8 @@ uci -q batch <<-EOT
 	set network.wan3.metric=30
 	set firewall.@zone[1].network='wan wan2 wan3 wan6'
 	set fstab.@global[0].auto_mount='0'
-	set fstab.@global[0].anon_mount='0'	
+	set fstab.@global[0].anon_mount='0'
+	set minidlna.config.enabled='1'
+	set minidlna.config.media_dir='/mnt' '/mnt/sda1/Audio' '/mnt/sda1/Video' '/mnt/sda1/Photo'
 	commit 
 EOT

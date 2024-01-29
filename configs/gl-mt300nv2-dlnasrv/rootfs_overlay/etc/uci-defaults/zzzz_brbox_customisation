@@ -1,9 +1,9 @@
 #!/bin/sh
 DEFAULT_HOST_NAME="dlnaserver"
-DEFPW=dlnaserver #Note: override this pw after initial configuration of the openwrt box
 DEFAULT_NAME="dlnaserver" #ssid for wifi
-DEFAULT_PW="dlnaserver" #wifi password
-DEF_LAN_IP="192.168.20.1"
+DEFAULT_PW="goodlife" #wifi password
+DEFPW=goodlife #Note: override this pw after initial configuration of the openwrt box
+DEF_LAN_IP="192.168.8.1"
 
 #if init-remote-box.sh is already called once, then dont run uci defaults
 [ "$(uci -q get system.@system[0].initremotebox)" = "yes" ] && exit 0
@@ -42,6 +42,7 @@ uci -q batch <<-EOT
 	set fstab.@global[0].anon_mount='0'
 	set minidlna.config.enabled='1'
 	set minidlna.config.friendly_name='dlna-server'
+	minidlna.config.uuid='dlnaserver'
 	add_list minidlna.config.media_dir='/mnt/sda1/Audio'
 	add_list minidlna.config.media_dir='/mnt/sda1/Video'
 	add_list minidlna.config.media_dir='/mnt/sda1/Photo'

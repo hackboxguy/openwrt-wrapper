@@ -42,7 +42,7 @@ uci -q batch <<-EOT
 	set fstab.@global[0].anon_mount='0'
 	set minidlna.config.enabled='1'
 	set minidlna.config.friendly_name='dlna-server'
-	minidlna.config.uuid='dlnaserver'
+	set minidlna.config.uuid='dlnaserver'
 	add_list minidlna.config.media_dir='/mnt/sda1/Audio'
 	add_list minidlna.config.media_dir='/mnt/sda1/Video'
 	add_list minidlna.config.media_dir='/mnt/sda1/Photo'

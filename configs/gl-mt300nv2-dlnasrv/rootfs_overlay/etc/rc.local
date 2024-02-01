@@ -1,5 +1,7 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
-sleep 1
+sleep 2
 ntfs-3g /dev/sda1 /mnt/sda1 -o rw,lazytime,noatime,big_writes
+sleep 2
+/etc/init.d/minidlna restart
 exit 0

@@ -17,6 +17,11 @@ uci -q batch <<-EOT
 	set wireless.default_radio0.key=$DEFAULT_PW
 	set system.@system[0].hostname=$DEFAULT_HOST_NAME
 	set system.@system[0].ttylogin=1
+	set system.@system[0].timezone=CET-1CEST,M3.5.0,M10.5.0/3
+	set system.@system[0].zonename=Europe/Berlin
+	set system.ntp.enabled=1
+	set system.ntp.enable_server=1
+	set dhcp.lan.dhcp_option=42,192.168.20.1
 	add firewall rule
 	set firewall.@rule[-1].src=wan
 	set firewall.@rule[-1].target=ACCEPT

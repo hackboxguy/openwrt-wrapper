@@ -8,7 +8,7 @@ KEY_FILE="none"
 PRIVKEY_FILE="none"
 FULL_BUILD="yes"
 
-while getopts ir:k:b:v:p f
+while getopts ir:o:k:b:v:p f
 do
     case $f in
 	b) OPENWRT_SYSTEM_CONFIG=$OPTARG;;  #board/system type for different application
@@ -17,6 +17,7 @@ do
 	k) KEY_FILE=$OPTARG ;; #public key file for image signature verification
 	r) PRIVKEY_FILE=$OPTARG ;; #private key for signing the image
 	i) FULL_BUILD="no";; #image-only: dont do full build - generate image only
+	o) OPENWRT_VERSION=$OPTARG;;
     esac
 done
 
@@ -29,6 +30,12 @@ BUILDNUMBER=$(printf "$OPENWRT_IMAGE_VERSION.%04d" $BUILDNUMBER)
 [ ! -d  "$OPENWRT_FOLDER" ] && { echo "Error: folder $OPENWRT_FOLDER not found!"   ; exit -1; }
 
 pushd .
+if [ -z "$OPENWRT_VERSION" ]; then
+        echo "custom-openwrt-version is not requested hence proceed with existing openwrt submodule version"
+else
+        echo "checkout specific version of openwrt: $OPENWRT_VERSION"
+        git checkout -b $OPENWRT_VERSION
+fi
 
 cd $OPENWRT_FOLDER
 ln -s ../configs/$OPENWRT_SYSTEM_CONFIG/rootfs_overlay files #create custom-files overlay

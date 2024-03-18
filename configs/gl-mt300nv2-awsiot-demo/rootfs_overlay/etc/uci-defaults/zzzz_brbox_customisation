@@ -21,7 +21,12 @@ uci -q batch <<-EOT
 	set firewall.@rule[-1].src=wan
 	set firewall.@rule[-1].target=ACCEPT
 	set firewall.@rule[-1].proto=tcp
-	set firewall.@rule[-1].dest_port=22	
+	set firewall.@rule[-1].dest_port=22
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=80
 	set network.wan.metric=10
 	set network.wan2=interface
 	set network.wan2.ifname=usb0

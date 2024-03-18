@@ -15,7 +15,7 @@ License: Apache-2.0
 LicenseFiles: COPYING.txt
 Type: ipkg
 Description: usb-tempered package provides functionality for reading temperature values from usb dongle.
-https://gitlab.com/mulx/TEMPered
+https://github.com/hackboxguy/usb-tempered.git
 Albert David <albert dot david at gmail.com>
 @@
 

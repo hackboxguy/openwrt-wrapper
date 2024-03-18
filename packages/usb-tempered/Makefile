@@ -4,9 +4,9 @@ PKG_NAME:=usb-tempered
 PKG_VERSION:=v1.1
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=https://gitlab.com/mulx/TEMPered.git
+PKG_SOURCE_URL:=https://github.com/hackboxguy/usb-tempered.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=e1354b775816c7b3e6f5c56405898a7762d51a46
+PKG_SOURCE_VERSION:=b7ccc208b0365313c3884934c92eb8457fda261b
 
 PKG_MAINTAINER:=Albert David <albert dot david at gmail.com>
 
@@ -23,7 +23,7 @@ define Package/usb-tempered
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=usb-tempered
-  URL:=https://gitlab.com/mulx/TEMPered.git
+  URL:=https://github.com/hackboxguy/usb-tempered.git
   DEPENDS:=+libc +libstdcpp +hidapi
 endef
 

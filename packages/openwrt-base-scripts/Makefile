@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/openwrt-base-scripts.git
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_VERSION:=71fe9aa4efa73aff0de3d1754062783e4229f39d
+PKG_SOURCE_VERSION:=7eaacde0cc6bc119cce3c97c4942dd6dd25918ab
 
 PKG_LICENSE:=LGPL-2.1
 PKG_LICENSE_FILES:=COPYING.txt

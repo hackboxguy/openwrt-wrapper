@@ -30,7 +30,7 @@ define Package/brbox
   CATEGORY:=Utilities
   TITLE:=brbox
   URL:=https://github.com/hackboxguy/brbox
-  DEPENDS:=+libc +libstdcpp +libjson-c +zlib +gloox
+  DEPENDS:=+libc +libstdcpp +libjson-c +zlib +gloox +libmodbus
 endef
 
 define Package/brbox/description
@@ -43,7 +43,7 @@ CMAKE_OPTIONS += -DINSTALL_CLIENT=ON
 #CMAKE_OPTIONS += -DSTARTNUM=71
 CMAKE_OPTIONS += -DCMAKE_CXX_COMPILER=$(TARGET_CROSS)g++
 CMAKE_OPTIONS += -DSDSRV_USE_MUSL=ON
-CMAKE_OPTIONS += -DMINIMUM_BRBOX_SYSTEM=ON
+#CMAKE_OPTIONS += -DMINIMUM_BRBOX_SYSTEM=ON
 CMAKE_OPTIONS += -DBRBOX_MIPS_UPDATE_UTILS=ON
 CMAKE_OPTIONS += -DMKIMG_HOST_BUILD=OFF
 #CMAKE_OPTIONS += -DSDSRV_OPENWRT_SYSTEM=ON

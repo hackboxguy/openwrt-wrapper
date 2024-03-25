@@ -1,7 +1,7 @@
 Source-Makefile: feeds/packages/utils/sd-mux-ctrl/Makefile
 Package: sd-mux-ctrl
 Version: v1.1
-Depends: +libftdi1 +libpopt
+Depends: +libc +libstdcpp +libftdi1 +libpopt
 Conflicts:
 Menu-Depends:
 Provides:

@@ -27,7 +27,7 @@ define Package/sd-mux-ctrl
   CATEGORY:=Utilities
   TITLE:=sd-mux-ctrl
   URL:=https://github.com/hackboxguy/sd-mux-ctrl
-  DEPENDS:=+libftdi1 +libpopt
+  DEPENDS:=+libc +libstdcpp +libftdi1 +libpopt
 endef
 
 define Package/sd-mux-ctrl/description

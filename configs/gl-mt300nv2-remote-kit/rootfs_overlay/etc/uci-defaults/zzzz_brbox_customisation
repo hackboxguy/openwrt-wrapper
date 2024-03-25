@@ -31,6 +31,16 @@ uci -q batch <<-EOT
 	set firewall.@rule[-1].enabled=1
 	set firewall.@rule[-1].proto=tcp
 	set firewall.@rule[-1].dest_port=80
+	add firewall rule
+	set firewall.@rule[-1].src=wan
+	set firewall.@rule[-1].target=ACCEPT
+	set firewall.@rule[-1].enabled=1
+	set firewall.@rule[-1].proto=tcp
+	set firewall.@rule[-1].dest_port=8080
+	set mjpg-streamer.core.port='8080'
+	set mjpg-streamer.core.enabled='1'
+	set mjpg-streamer.core.enable_auth='0'
+	set mjpg-streamer.core.resolution='1920x1080'
 	set network.wan.metric=10
 	set network.wan2=interface
 	set network.wan2.ifname=usb0

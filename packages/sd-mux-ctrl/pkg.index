@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/sd-mux-ctrl/Makefile
+Package: sd-mux-ctrl
+Version: v1.1
+Depends: +libftdi1 +libpopt
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: sd-mux-ctrl utility is used for accessing the SDWire hw
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: sd-mux-ctrl-v1.1.tar.gz
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:  sd-mux-ctrl provides SDWire access functionality for openwrt linux system.
+https://github.com/hackboxguy/sd-mux-ctrl
+Albert David <albert dot david at gmail.com>
+@@
+

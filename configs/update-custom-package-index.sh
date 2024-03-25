@@ -35,3 +35,7 @@ cat ../packages/brbox-minimal/pkg.index >> feeds/packages.index
 #awsiot-openwrt-extensions
 ln -s ../../../../packages/awsiot-openwrt-extensions feeds/packages/utils/awsiot-openwrt-extensions
 cat ../packages/awsiot-openwrt-extensions/pkg.index >> feeds/packages.index
+
+#sd-mux-ctrl
+ln -s ../../../../packages/sd-mux-ctrl feeds/packages/utils/sd-mux-ctrl
+cat ../packages/sd-mux-ctrl/pkg.index >> feeds/packages.index

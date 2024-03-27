@@ -93,8 +93,8 @@ uci -q batch <<-EOT
         set firewall.@redirect[-1].dest_ip=192.168.20.1
 
 	set fstab.@mount[0].enabled='1'
-	uci set fstab.@mount[0].fstype='ntfs'
-	uci set fstab.@mount[0].options='rw,lazytime,noatime,big_writes'
+	set fstab.@mount[0].fstype='ntfs'
+	set fstab.@mount[0].options='rw,lazytime,noatime,big_writes'
 
 	commit 
 EOT

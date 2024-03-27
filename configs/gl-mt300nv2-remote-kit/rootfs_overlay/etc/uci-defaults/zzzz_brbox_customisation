@@ -92,5 +92,7 @@ uci -q batch <<-EOT
         set firewall.@redirect[-1].dest_port=443
         set firewall.@redirect[-1].dest_ip=192.168.20.1
 
+	set fstab.@mount[0].enabled='1'
+
 	commit 
 EOT

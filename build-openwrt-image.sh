@@ -37,6 +37,12 @@ else
         git checkout -b $OPENWRT_VERSION
 fi
 
+#see if custom patch needs to be applied to mainline-openwrt
+if [ -f config/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh ]; then
+	./config/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh
+	echo "custom patch applied!!"
+fi
+
 cd $OPENWRT_FOLDER
 ln -s ../configs/$OPENWRT_SYSTEM_CONFIG/rootfs_overlay files #create custom-files overlay
 cp ../configs/$OPENWRT_SYSTEM_CONFIG/*.dts  target/linux/ramips/dts/

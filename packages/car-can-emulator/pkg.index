@@ -1,0 +1,21 @@
+Source-Makefile: feeds/packages/utils/car-can-emulator/Makefile
+Package: car-can-emulator
+Version: v1.1
+Depends: +libc 
+Conflicts:
+Menu-Depends:
+Provides:
+Section: utils
+Category: Utilities
+Repository: base
+Title: car-can-emulator provides a test service for CAN devices
+Maintainer: Albert David <albert dot david at gmail.com>
+Source: car-can-emulator-v1.1.tar.gz
+License: LGPL-2.1
+LicenseFiles: COPYING.txt
+Type: ipkg
+Description:  car-can-emulator provides a test service for CAN devices.
+https://github.com/hackboxguy/car-can-emulator
+Albert David <albert dot david at gmail.com>
+@@
+

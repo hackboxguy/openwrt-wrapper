@@ -39,3 +39,7 @@ cat ../packages/awsiot-openwrt-extensions/pkg.index >> feeds/packages.index
 #sd-mux-ctrl
 ln -s ../../../../packages/sd-mux-ctrl feeds/packages/utils/sd-mux-ctrl
 cat ../packages/sd-mux-ctrl/pkg.index >> feeds/packages.index
+
+#car-can-emulator
+ln -s ../../../../packages/car-can-emulator feeds/packages/utils/car-can-emulator
+cat ../packages/car-can-emulator/pkg.index >> feeds/packages.index

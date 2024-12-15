@@ -29,12 +29,11 @@ BUILDNUMBER=$(printf "$OPENWRT_IMAGE_VERSION.%04d" $BUILDNUMBER)
 #./openwrt folder mus exist - use git --recursive to clone openwrt-wrapper
 [ ! -d  "$OPENWRT_FOLDER" ] && { echo "Error: folder $OPENWRT_FOLDER not found!"   ; exit -1; }
 
-pushd .
 if [ -z "$OPENWRT_VERSION" ]; then
         echo "custom-openwrt-version is not requested hence proceed with existing openwrt submodule version"
 else
         echo "checkout specific version of openwrt: $OPENWRT_VERSION"
-        git checkout -b $OPENWRT_VERSION
+	pushd .;cd $OPENWRT_FOLDER;git checkout -b $OPENWRT_VERSION;popd
 fi
 
 #see if custom patch needs to be applied to mainline-openwrt
@@ -43,6 +42,7 @@ if [ -f config/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh ]; then
 	echo "custom patch applied!!"
 fi
 
+pushd .
 cd $OPENWRT_FOLDER
 ln -s ../configs/$OPENWRT_SYSTEM_CONFIG/rootfs_overlay files #create custom-files overlay
 cp ../configs/$OPENWRT_SYSTEM_CONFIG/*.dts  target/linux/ramips/dts/

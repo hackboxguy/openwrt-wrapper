@@ -37,8 +37,8 @@ else
 fi
 
 #see if custom patch needs to be applied to mainline-openwrt
-if [ -f config/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh ]; then
-	./config/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh
+if [ -f configs/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh ]; then
+	./configs/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh
 	echo "custom patch applied!!"
 fi
 

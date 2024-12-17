@@ -1,0 +1,5 @@
+output-binary-file : ./openwrt/bin/targets/bcm27xx/bcm2711/openwrt-bcm27xx-bcm2711-rpi-4-squashfs-sysupgrade.img.gz
+mkuimg-util        : ./openwrt/build_dir/target-aarch64_cortex-a72_musl/brbox-v1.1/scripts/brbox-mkuimg.sh
+mkimage-util       : ./host-utils/brbox-mkimage
+image-creator      : ./openwrt/build_dir/target-aarch64_cortex-a72_musl/brbox-v1.1/scripts/create-signed-brbox-proj.sh
+mkimage-type       : BrBoxRpi4

@@ -1,0 +1,19 @@
+################################################################################
+# Bootloader configuration - config.txt
+################################################################################
+
+################################################################################
+# For overclocking and various other settings, see:
+# https://www.raspberrypi.org/documentation/configuration/config-txt/README.md
+################################################################################
+
+# OpenWrt config
+include distroconfig.txt
+
+[all]
+# Place your custom settings here.
+enable_uart=1
+init_uart_clock=16000000
+dtparam=i2c1=on
+dtparam=spi=on
+dtparam=i2s=on

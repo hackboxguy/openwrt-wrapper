@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=car-can-emulator
-PKG_VERSION:=v1.1
+PKG_VERSION:=1.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/car-can-emulator.git

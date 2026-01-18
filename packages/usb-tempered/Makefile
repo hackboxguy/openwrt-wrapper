@@ -31,6 +31,8 @@ define Package/usb-tempered/description
   usb-tempered is a utility for reading temperature from TEMPer usb device
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 define Package/usb-tempered/install
 	$(INSTALL_DIR) $(1)/usr/include

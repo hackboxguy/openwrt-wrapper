@@ -2,6 +2,30 @@
 set -eu  # Exit on error (-e) and undefined variables (-u)
 #this is a top-level script to build openwrt based images for different hw-configs
 
+# Track directory depth for cleanup
+DIR_STACK_DEPTH=0
+
+# Cleanup trap - ensures we return to original directory on exit
+cleanup() {
+	while [ "$DIR_STACK_DEPTH" -gt 0 ]; do
+		popd > /dev/null 2>&1 || true
+		DIR_STACK_DEPTH=$((DIR_STACK_DEPTH - 1))
+	done
+}
+trap cleanup EXIT
+
+# Wrapper for pushd that tracks depth
+push_dir() {
+	pushd "$1" > /dev/null
+	DIR_STACK_DEPTH=$((DIR_STACK_DEPTH + 1))
+}
+
+# Wrapper for popd that tracks depth
+pop_dir() {
+	popd > /dev/null
+	DIR_STACK_DEPTH=$((DIR_STACK_DEPTH - 1))
+}
+
 # Color definitions (disabled if not a terminal)
 if [ -t 1 ]; then
 	RED='\033[0;31m'
@@ -27,12 +51,14 @@ print_info() { echo -e "${BLUE}==>${NC} $1"; }
 print_error() { echo -e "${RED}Error:${NC} $1"; }
 
 usage() {
-	echo "Usage: $(basename "$0") [OPTIONS]"
+	echo "Usage: $(basename "$0") -b CONFIG [OPTIONS]"
 	echo ""
 	echo "Build OpenWRT images for different router hardware configurations."
 	echo ""
+	echo "Required:"
+	echo "  -b CONFIG   Board/system config name (e.g., gl-mt300nv2-remote-kit)"
+	echo ""
 	echo "Options:"
-	echo "  -b CONFIG   Board/system config name (default: gl-mt300nv2-awsiot)"
 	echo "  -v VERSION  Image version prefix (default: 00.01)"
 	echo "  -o VERSION  OpenWRT version to checkout (optional)"
 	echo "  -k FILE     Public key file for image signature verification"
@@ -52,7 +78,7 @@ if [ $# -eq 0 ] || [ "$1" = "--help" ]; then
 	exit 0
 fi
 
-OPENWRT_SYSTEM_CONFIG=gl-mt300nv2-awsiot #default config to build if not specified
+OPENWRT_SYSTEM_CONFIG=""  #must be specified via -b
 OPENWRT_IMAGE_VERSION=00.01 #default version will be 00.01.<build_num>
 OPENWRT_FOLDER=./openwrt
 OPENWRT_VERSION=""  # Empty by default (use submodule version)
@@ -77,6 +103,14 @@ do
 		\?) usage; exit 1;;  #invalid option
 	esac
 done
+
+# Check required arguments
+if [ -z "$OPENWRT_SYSTEM_CONFIG" ]; then
+	print_error "Missing required argument: -b CONFIG"
+	echo ""
+	usage
+	exit 1
+fi
 
 #validate configuration function
 validate_config() {
@@ -215,17 +249,17 @@ if [ -z "$OPENWRT_VERSION" ]; then
 	print_info "Using existing openwrt submodule version"
 else
 	print_info "Checking out OpenWRT version: $OPENWRT_VERSION"
-	pushd "$OPENWRT_FOLDER" > /dev/null || { print_error "failed to enter $OPENWRT_FOLDER"; exit 1; }
+	push_dir "$OPENWRT_FOLDER" || { print_error "failed to enter $OPENWRT_FOLDER"; exit 1; }
 	git fetch --tags > /dev/null 2>&1 || true
 	if ! git checkout "$OPENWRT_VERSION" 2>/dev/null; then
 		print_error "failed to checkout OpenWRT version '$OPENWRT_VERSION'"
 		echo "Available tags:"
 		git tag | grep -E "^v[0-9]+\." | tail -10 || true
-		popd > /dev/null
+		pop_dir
 		exit 1
 	fi
 	print_ok "Checked out OpenWRT $OPENWRT_VERSION"
-	popd > /dev/null
+	pop_dir
 fi
 
 #see if custom patch needs to be applied to mainline-openwrt
@@ -235,10 +269,19 @@ if [ -f "configs/$OPENWRT_SYSTEM_CONFIG/patches/custom-patch.sh" ]; then
 	print_ok "Custom patch applied"
 fi
 
-pushd "$OPENWRT_FOLDER" > /dev/null
+push_dir "$OPENWRT_FOLDER"
 ln -sf "../configs/$OPENWRT_SYSTEM_CONFIG/rootfs_overlay" files #create custom-files overlay
-cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dts target/linux/ramips/dts/ 2>/dev/null || true
-cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dtsi target/linux/ramips/dts/ 2>/dev/null || true
+
+#copy device tree files to appropriate location (configurable via dts-destination.txt)
+if [ -f "../configs/$OPENWRT_SYSTEM_CONFIG/dts-destination.txt" ]; then
+	DTS_DEST=$(cat "../configs/$OPENWRT_SYSTEM_CONFIG/dts-destination.txt")
+else
+	DTS_DEST="target/linux/ramips/dts"  #default for ramips boards
+fi
+if [ -n "$DTS_DEST" ] && [ -d "$DTS_DEST" ]; then
+	cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dts "$DTS_DEST/" 2>/dev/null || true
+	cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dtsi "$DTS_DEST/" 2>/dev/null || true
+fi
 [ "$FULL_BUILD" = "yes" ] && ./scripts/feeds update -a
 
 #update luci packages
@@ -292,7 +335,7 @@ fi
 [ "$FULL_BUILD" = "yes" ] && make defconfig
 
 if [ "$PREPARE_ONLY" = 1 ]; then
-	popd > /dev/null
+	pop_dir
 	print_ok "Preparation complete (build skipped)"
 	exit 0
 fi
@@ -300,20 +343,25 @@ fi
 #build the image -j value depends on number of available cores/threads
 if [ "$FULL_BUILD" = "yes" ]; then
 	print_info "Building with $(nproc) parallel jobs..."
+	BUILD_START=$(date +%s)
 	set +e  # Disable exit on error for make (we handle it ourselves)
 	make PKG_HASH=skip -j$(nproc)
 	BUILD_RESULT=$?
 	set -e
+	BUILD_END=$(date +%s)
+	BUILD_DURATION=$((BUILD_END - BUILD_START))
+	BUILD_MINUTES=$((BUILD_DURATION / 60))
+	BUILD_SECONDS=$((BUILD_DURATION % 60))
 	if [ "$BUILD_RESULT" = "0" ]; then
-		print_ok "Build completed successfully"
+		print_ok "Build completed successfully in ${BUILD_MINUTES}m ${BUILD_SECONDS}s"
 	else
-		print_error "Build failed with exit code $BUILD_RESULT"
+		print_error "Build failed with exit code $BUILD_RESULT after ${BUILD_MINUTES}m ${BUILD_SECONDS}s"
 	fi
 else
 	BUILD_RESULT=0 #just go ahead with image creation
 fi
 
-popd > /dev/null
+pop_dir
 
 #if private key file is provided, then sign the image and create mipsProj.bin
 if [ "$BUILD_RESULT" = "0" ]; then

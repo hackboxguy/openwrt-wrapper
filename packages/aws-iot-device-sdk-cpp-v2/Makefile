@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aws-iot-device-sdk-cpp-v2
-PKG_VERSION:=v1.1
+PKG_VERSION:=1.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/aws/aws-iot-device-sdk-cpp-v2.git

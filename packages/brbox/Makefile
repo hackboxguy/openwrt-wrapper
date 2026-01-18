@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=brbox
-PKG_VERSION:=v1.1
+PKG_VERSION:=1.1
 PKG_RELEASE:=1
 
 #PKG_SOURCE:=brbox-v1.1.tar.gz

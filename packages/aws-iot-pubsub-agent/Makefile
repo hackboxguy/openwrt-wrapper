@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=aws-iot-pubsub-agent
-PKG_VERSION:=v1.2
+PKG_VERSION:=1.2
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:=https://github.com/hackboxguy/aws-iot-pubsub-agent.git

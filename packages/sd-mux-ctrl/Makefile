@@ -34,6 +34,9 @@ define Package/sd-mux-ctrl/description
   sd-mux-ctrl is a control utility for accessing SDWire hardware.
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 define Package/sd-mux-ctrl/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/* $(1)/usr/sbin/

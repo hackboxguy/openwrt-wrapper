@@ -37,6 +37,9 @@ define Package/brbox-minimal/description
   brbox-minimal provides basic set of services like sysmgr/xmproxy/dispsrv etc.
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 CMAKE_OPTIONS += -DAUTO_SVN_VERSION=OFF
 CMAKE_OPTIONS += -DINSTALL_CLIENT=ON
 #CMAKE_OPTIONS += -DINSTALL_MY_HEADERS=OFF

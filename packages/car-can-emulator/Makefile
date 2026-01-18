@@ -33,6 +33,8 @@ endef
 define Package/car-can-emulator/description
   car-can-emulator provides a car emulation service for testeing CAN based devices.
 endef
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 CMAKE_OPTIONS += -DCMAKE_CXX_COMPILER_FORCED=TRUE
 define Package/car-can-emulator/install
 	$(INSTALL_DIR) $(1)/usr/sbin

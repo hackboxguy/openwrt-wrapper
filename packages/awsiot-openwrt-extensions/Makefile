@@ -35,6 +35,9 @@ define Package/awsiot-openwrt-extensions/description
   awsiot-openwrt-extensions provides a layer for openwrt to add aws-iot-demo specific functionality.
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 define Package/awsiot-openwrt-extensions/install
 	$(INSTALL_DIR) $(1)/etc/triggerhappy/triggers.d
 	$(CP) $(PKG_INSTALL_DIR)/usr/etc/triggerhappy/triggers.d/* $(1)/etc/triggerhappy/triggers.d/

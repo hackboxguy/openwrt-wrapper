@@ -34,6 +34,8 @@ define Package/aws-iot-pubsub-agent/description
   A demot publish/subscribe agent to work with AWS-IoT-Core.
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 CMAKE_OPTIONS += -DCMAKE_PREFIX_PATH=$(BUILD_DIR)/aws-iot-device-sdk-cpp-v2-v1.1/ipkg-install/usr
 
 define Package/aws-iot-pubsub-agent/install

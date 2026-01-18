@@ -34,6 +34,8 @@ define Package/aws-iot-device-sdk-cpp-v2/description
   aws-iot-device-sdk-cpp-v2 provides AWS-IoT connectivity api interface
 endef
 
+# Workaround for CMake 3.30+ removing compatibility with old cmake_minimum_required
+CMAKE_OPTIONS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 define Package/aws-iot-device-sdk-cpp-v2/install
 	$(INSTALL_DIR) $(1)/usr/lib

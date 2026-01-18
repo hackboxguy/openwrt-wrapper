@@ -223,7 +223,7 @@ fi
 #prepare a buildnumber for the image
 git pull > /dev/null 2>&1 || print_warn "git pull failed, continuing with local version"
 BUILDNUMBER=$(git rev-list --count --first-parent HEAD)
-BUILDNUMBER=$(printf "$OPENWRT_IMAGE_VERSION.%04d" $BUILDNUMBER)
+BUILDNUMBER=$(printf "$OPENWRT_IMAGE_VERSION.%04d" "$BUILDNUMBER")
 
 #./openwrt folder must exist - use git --recursive to clone openwrt-wrapper
 if [ ! -d "$OPENWRT_FOLDER" ]; then
@@ -235,7 +235,7 @@ fi
 if [ ! -d "configs/$OPENWRT_SYSTEM_CONFIG" ]; then
 	print_error "config directory not found: configs/$OPENWRT_SYSTEM_CONFIG"
 	echo "Available configs:"
-	ls -1 configs/ 2>/dev/null | head -10 || true
+	find configs/ -maxdepth 1 -mindepth 1 -type d -printf '%f\n' 2>/dev/null | head -10 || true
 	exit 1
 fi
 
@@ -282,10 +282,12 @@ if [ -n "$DTS_DEST" ] && [ -d "$DTS_DEST" ]; then
 	cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dts "$DTS_DEST/" 2>/dev/null || true
 	cp "../configs/$OPENWRT_SYSTEM_CONFIG"/*.dtsi "$DTS_DEST/" 2>/dev/null || true
 fi
-[ "$FULL_BUILD" = "yes" ] && ./scripts/feeds update -a
-
-#update luci packages
-./scripts/feeds update packages luci
+#update feeds (full build updates all, image-only updates packages/luci only)
+if [ "$FULL_BUILD" = "yes" ]; then
+	./scripts/feeds update -a
+else
+	./scripts/feeds update packages luci
+fi
 ./scripts/feeds install -a -p luci
 
 #update feeds/package.index with sw packages that are not part of standard openwrt packages
@@ -294,6 +296,7 @@ fi
 #install other openwrt-packages that are needed for building the image
 if [ -f ../configs/extra_packages ]; then
 	EXTRA_PKGS=$(cat ../configs/extra_packages)
+	# shellcheck disable=SC2086  # Word splitting is intentional for package list
 	[ "$FULL_BUILD" = "yes" ] && ./scripts/feeds install $EXTRA_PKGS
 else
 	print_warn "../configs/extra_packages not found, skipping global extra packages"
@@ -308,6 +311,7 @@ if [ -z "$BOARD_CONFIG_PKGS" ]; then
 	print_info "No board specific packages requested"
 else
 	print_info "Installing board specific packages"
+	# shellcheck disable=SC2086  # Word splitting is intentional for package list
 	[ "$FULL_BUILD" = "yes" ] && ./scripts/feeds install $BOARD_CONFIG_PKGS
 fi
 
@@ -345,7 +349,7 @@ if [ "$FULL_BUILD" = "yes" ]; then
 	print_info "Building with $(nproc) parallel jobs..."
 	BUILD_START=$(date +%s)
 	set +e  # Disable exit on error for make (we handle it ourselves)
-	make PKG_HASH=skip -j$(nproc)
+	make PKG_HASH=skip -j"$(nproc)"
 	BUILD_RESULT=$?
 	set -e
 	BUILD_END=$(date +%s)
@@ -383,4 +387,28 @@ if [ "$BUILD_RESULT" = "0" ]; then
 		"$IMG_CREATOR" --type="$IMG_TYPE" --infile="$OUT_BIN_PATH" --private="$PRIVKEY_FILE" --mkimage="$MKIMAGE_UTIL" --mkuimg="$MKUIMG_UTIL" --version="$BUILDNUMBER" --outfile="./$OPENWRT_SYSTEM_CONFIG.uimg"
 		print_ok "Signed image created: ./$OPENWRT_SYSTEM_CONFIG.uimg"
 	fi
+fi
+
+#print build summary
+if [ "$BUILD_RESULT" = "0" ]; then
+	echo ""
+	echo -e "${BOLD}=== Build Summary ===${NC}"
+	echo "  Board config:  $OPENWRT_SYSTEM_CONFIG"
+	echo "  Version:       $BUILDNUMBER"
+	echo ""
+	echo -e "${BOLD}Output images:${NC}"
+	# Find generated images in openwrt/bin/targets
+	if [ -d "$OPENWRT_FOLDER/bin/targets" ]; then
+		# shellcheck disable=SC2044  # Using find in loop is acceptable here
+		for img in $(find "$OPENWRT_FOLDER/bin/targets" -type f \( -name "*.bin" -o -name "*.img.gz" -o -name "*.img" \) 2>/dev/null | head -5); do
+			SIZE=$(du -h "$img" | cut -f1)
+			echo "  $SIZE  $img"
+		done
+	fi
+	if [ -f "./$OPENWRT_SYSTEM_CONFIG.uimg" ]; then
+		SIZE=$(du -h "./$OPENWRT_SYSTEM_CONFIG.uimg" | cut -f1)
+		echo "  $SIZE  ./$OPENWRT_SYSTEM_CONFIG.uimg (signed)"
+	fi
+	echo ""
+	echo -e "${GREEN}${BOLD}Build completed successfully!${NC}"
 fi

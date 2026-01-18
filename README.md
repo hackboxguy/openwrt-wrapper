@@ -75,7 +75,7 @@ openwrt-wrapper/
 ### Clone the Repository
 
 ```bash
-git clone --recursive <repository-url> openwrt-wrapper
+git clone --recursive https://github.com/hackboxguy/openwrt-wrapper.git
 cd openwrt-wrapper
 ```
 
